@@ -2,22 +2,22 @@ package com.rabo.customerservice.model;
 
 public class CustomerModel {
 
-	private int custId;
+	private Long custId;
 	private String fname;
-	private String lname;		
+	private String lname;
 	private Integer age;
-	
+
 	private AddressModel address;
 
 	public CustomerModel() {
 		super();
 	}
 
-	public int getCustId() {
+	public Long getCustId() {
 		return custId;
 	}
 
-	public void setCustId(int custId) {
+	public void setCustId(Long custId) {
 		this.custId = custId;
 	}
 
@@ -45,7 +45,6 @@ public class CustomerModel {
 		this.age = age;
 	}
 
-
 	public AddressModel getAddress() {
 		return address;
 	}
@@ -54,13 +53,13 @@ public class CustomerModel {
 		this.address = address;
 	}
 
-	public CustomerModel(int custId, String fname, String lname,  Integer age, AddressModel address) {
+	public CustomerModel(Long custId, String fname, String lname, Integer age, AddressModel address) {
 		super();
 		this.custId = custId;
 		this.fname = fname;
 		this.lname = lname;
-		this.age = age;		
+		this.age = age;
 		this.address = address;
 	}
-	
+
 }

@@ -37,12 +37,12 @@ public class CustomerServiceDAOImplTest {
 	@Test
 	public void testAddCustomer_CustomerAlready_Exists() {
 		AddressModel addressmod = new AddressModel("Street", "HYD", "111111", "India");
-		CustomerModel customermod = new CustomerModel(1, "Gopi", "Akula", 26, addressmod);
+		CustomerModel customermod = new CustomerModel(1l, "Gopi", "Akula", 26, addressmod);
 
 		ObjectMapper mapper = new ObjectMapper();
 		Customer customer = mapper.convertValue(customermod, Customer.class);
 
-		int id = 1;
+		Long id = 1l;
 		when(customerRepository.findById(id)).thenReturn(Optional.of(customer));
 
 		Exception exception = Assertions.assertThrows(CustomerNotFoundException.class, () -> {
@@ -54,12 +54,12 @@ public class CustomerServiceDAOImplTest {
 
 	@Test
 	public void testGetCustomer() {
-		AddressModel address = new AddressModel(1, "Street1", "HYD", "111111", "India");
-		CustomerModel customermod = new CustomerModel(1, "Gopi", "Akula", 26, address);
+		AddressModel address = new AddressModel(1l, "Street1", "HYD", "111111", "India");
+		CustomerModel customermod = new CustomerModel(1l, "Gopi", "Akula", 26, address);
 		ObjectMapper mapper = new ObjectMapper();
 		Customer customer = mapper.convertValue(customermod, Customer.class);
-		when(customerRepository.findById(1)).thenReturn(Optional.of(customer));
-		Optional<CustomerModel> responseEntity = customerServiceDAOImpl.getCustomer(1);
+		when(customerRepository.findById(1l)).thenReturn(Optional.of(customer));
+		Optional<CustomerModel> responseEntity = customerServiceDAOImpl.getCustomer(1l);
 		CustomerModel customer1 = responseEntity.get();
 		assertEquals("Gopi", customer1.getFname());
 	}
@@ -67,9 +67,9 @@ public class CustomerServiceDAOImplTest {
 	@Test
 	public void testGetAllCustomer() {
 		List<Customer> customerList = new ArrayList<Customer>();
-		Address address = new Address(1, "Street1", "HYD", "111111", "India");
-		Customer customer = new Customer(2, "Gopi", "Akula", 26, address);
-		Customer customer1 = new Customer(3, "Gopi", "Akula", 27, address);
+		Address address = new Address(1l, "Street1", "HYD", "111111", "India");
+		Customer customer = new Customer(2l, "Gopi", "Akula", 26, address);
+		Customer customer1 = new Customer(3l, "Gopi", "Akula", 27, address);
 		customerList.add(customer);
 		customerList.add(customer1);
 
@@ -84,8 +84,8 @@ public class CustomerServiceDAOImplTest {
 		List<Customer> customerList = new ArrayList<Customer>();
 		String fname = "Gopi";
 		String lname = "Akula";
-		Address address = new Address(1, "Street1", "HYD", "111111", "India");
-		Customer customer = new Customer(1, "Gopi", "Akula", 26, address);
+		Address address = new Address(1l, "Street1", "HYD", "111111", "India");
+		Customer customer = new Customer(1l, "Gopi", "Akula", 26, address);
 		customerList.add(customer);
 
 		/*
@@ -109,9 +109,9 @@ public class CustomerServiceDAOImplTest {
 		List<Customer> customerList = new ArrayList<Customer>();
 		String fname = "Gopi";
 		String lname = "Akula";
-		Address address = new Address(1, "Street1", "HYD", "111111", "India");
-		Customer customer = new Customer(1, "Gopi", "Akula", 26, address);
-		Customer customer1 = new Customer(2, "Gopi", "Raju", 27, address);
+		Address address = new Address(1l, "Street1", "HYD", "111111", "India");
+		Customer customer = new Customer(1l, "Gopi", "Akula", 26, address);
+		Customer customer1 = new Customer(2l, "Gopi", "Raju", 27, address);
 		customerList.add(customer);
 		customerList.add(customer1);
 		List<Optional<Customer>> resultList = customerList.stream().map(Optional::ofNullable)
@@ -124,11 +124,11 @@ public class CustomerServiceDAOImplTest {
 
 	@Test
 	public void testUpdateLivingAddress() {
-		Address address = new Address(1, "Street1", "HYD", "111111", "India");
-		Customer customer = new Customer(1, "Gopi", "Akula", 26, address);
+		Address address = new Address(1l, "Street1", "HYD", "111111", "India");
+		Customer customer = new Customer(1l, "Gopi", "Akula", 26, address);
 		ObjectMapper mapper = new ObjectMapper();
 		AddressModel addressdto = mapper.convertValue(address, AddressModel.class);
-		int id = 1;
+		Long id = 1l;
 		when(customerRepository.findById(id)).thenReturn(Optional.of(customer));
 		when(customerRepository.save(customer)).thenReturn(customer);
 		CustomerModel responseEntity = customerServiceDAOImpl.updateLivingAddress(id, addressdto);

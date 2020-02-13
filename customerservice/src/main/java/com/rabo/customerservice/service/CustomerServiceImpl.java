@@ -35,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Optional<CustomerModel> getCustomer(int id) {
+	public Optional<CustomerModel> getCustomer(Long id) {
 		log.info("Enters in CustomerServiceImpl: getCustomer");
 		Optional<CustomerModel> customerbo = customerServiceDAO.getCustomer(id);
 		log.info("Retrieved cusotmer info = " + customerbo);
@@ -84,7 +84,7 @@ public class CustomerServiceImpl implements CustomerService {
 		return resultList;
 	}
 
-	public Optional<CustomerModel> updateLivingAddress(int custId, AddressModel addressdto) {
+	public Optional<CustomerModel> updateLivingAddress(Long custId, AddressModel addressdto) {
 		log.info("Enters in CustomerServiceImpl: updateLivingAddress");
 		CustomerModel CustomerModel = customerServiceDAO.updateLivingAddress(custId, addressdto);
 		Optional<CustomerModel> Optcustomerdto = Optional.of(CustomerModel);

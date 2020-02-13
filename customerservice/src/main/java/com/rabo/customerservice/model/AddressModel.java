@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class AddressModel {
 
 	@JsonIgnore
-	private int id;	
-	private String street;	
-	private String city;	
-	private String zipCode;	
+	private Long id;
+	private String street;
+	private String city;
+	private String zipCode;
 	private String Country;
 
-	public AddressModel(int id, String street, String city, String zipCode, String country) {
+	public AddressModel(Long id, String street, String city, String zipCode, String country) {
 		super();
 		this.id = id;
 		this.street = street;
@@ -28,11 +28,11 @@ public class AddressModel {
 		Country = country;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

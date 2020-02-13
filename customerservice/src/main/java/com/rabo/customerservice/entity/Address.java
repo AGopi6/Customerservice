@@ -17,7 +17,7 @@ public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "add_id", unique = true)	
-	private int id;
+	private Long id;
 	private String street;	
 	
 	@NotBlank(message = ErrorCodes.CITY_MANDATORY)
@@ -29,7 +29,7 @@ public class Address {
 	@NotBlank(message = ErrorCodes.COUNTRY_MANDATORY)	
 	private String Country;
 
-	public Address(int id, String street, String city, String zipCode, String country) {
+	public Address(Long id, String street, String city, String zipCode, String country) {
 		super();
 		this.id = id;
 		this.street = street;
@@ -38,11 +38,11 @@ public class Address {
 		Country = country;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

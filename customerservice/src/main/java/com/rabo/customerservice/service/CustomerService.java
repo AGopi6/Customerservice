@@ -12,15 +12,10 @@ import com.rabo.customerservice.model.CustomerModel;
 public interface CustomerService {
 
 	public Optional<CustomerModel> addCustomer(CustomerModel customer);
-
-	Optional<CustomerModel> getCustomer(int id);
-
+	Optional<CustomerModel> getCustomer(Long id);
 	List<Optional<CustomerModel>> getAllCustomers();
-
 	List<Optional<CustomerModel>> getCustomerByFnameAndLname(String fname, String lname);
-
 	List<Optional<CustomerModel>> getCustomerByFnameOrLname(String fname, String lname);
-
-	Optional<CustomerModel> updateLivingAddress(int custId, AddressModel addressdto);
+	Optional<CustomerModel> updateLivingAddress(Long custId, AddressModel addressdto);
 
 }

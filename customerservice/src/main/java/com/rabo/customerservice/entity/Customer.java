@@ -27,7 +27,7 @@ public class Customer implements Serializable {
 
 	@Id
 	@Min(1)
-	private int custId;
+	private Long custId;
 
 	@NotBlank(message = ErrorCodes.FNAME_MANDATORY)
 	private String fname;
@@ -48,11 +48,11 @@ public class Customer implements Serializable {
 	@NotNull(message = ErrorCodes.ADDRESS_MANDATORY)
 	private Address address;
 
-	public int getCustId() {
+	public Long getCustId() {
 		return custId;
 	}
 
-	public void setCustId(int custId) {
+	public void setCustId(Long custId) {
 		this.custId = custId;
 	}
 
@@ -88,12 +88,11 @@ public class Customer implements Serializable {
 		this.address = address;
 	}
 
-	public Customer(int custId, String fname, String lname, Integer age, Address address) {
+	public Customer(Long custId, String fname, String lname, Integer age, Address address) {
 		super();
 		this.custId = custId;
 		this.fname = fname;
 		this.lname = lname;
-
 		this.age = age;
 		this.address = address;
 	}

@@ -23,14 +23,13 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO {
 	private static final Logger log = LoggerFactory.getLogger(CustomerServiceDAOImpl.class);
 	@Autowired
 	private CustomerRepository customerRepository;
- 
+
 	@Override
 	public Optional<CustomerModel> addCustomer(CustomerModel customerbo) {
 		log.info("Enters CustomerServiceDAOImpl :addedCustomer info before adding" + customerbo);
-		//Optional<CustomerModel> custVal = Optional.of(customerbo);		
 		ObjectMapper mapper = new ObjectMapper();
 		Customer customer = mapper.convertValue(customerbo, Customer.class);
-		int id = customer.getCustId();
+		Long id = customer.getCustId();
 		Optional<Customer> customer1 = customerRepository.findById(id);
 		if (customer1.isPresent()) {
 			throw new CustomerNotFoundException("Customer already exists on the given id =" + customer.getCustId());
@@ -43,7 +42,7 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO {
 	}
 
 	@Override
-	public Optional<CustomerModel> getCustomer(int id) {
+	public Optional<CustomerModel> getCustomer(Long id) {
 		log.info("Enters in CustomerServiceDAOImpl: getCustomer" + id);
 		Optional<Customer> customer = customerRepository.findById(id);
 		if (!customer.isPresent()) {
@@ -95,7 +94,7 @@ public class CustomerServiceDAOImpl implements CustomerServiceDAO {
 		return customerboList;
 	}
 
-	public CustomerModel updateLivingAddress(int custId, AddressModel addressbo) {
+	public CustomerModel updateLivingAddress(Long custId, AddressModel addressbo) {
 		log.info("Enters in CustomerServiceDAOImpl: updateLivingAddress");
 		ObjectMapper mapper = new ObjectMapper();
 		Address address = mapper.convertValue(addressbo, Address.class);

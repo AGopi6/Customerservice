@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.rabo.customerservice.entity.Address;
 
 @Repository
-public interface AddressRepository extends JpaRepository<Address, Integer> {
+public interface AddressRepository extends JpaRepository<Address, Long> {
 
 }

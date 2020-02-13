@@ -32,10 +32,10 @@ public class CustomerServiceImplTest {
 
 	public static void intializeCustomer() {
 		addressmod = new AddressModel("Street", "HYD", "111111", "India");
-		customermod = new CustomerModel(1, "Gopi", "Akula", 26, addressmod);
+		customermod = new CustomerModel(1l, "Gopi", "Akula", 26, addressmod);
 
 		addressmodChange = new AddressModel("Street2", "BLR", "536689", "India");
-		customermodChange = new CustomerModel(1, "Gopi", "Akula", 26, addressmodChange);
+		customermodChange = new CustomerModel(1l, "Gopi", "Akula", 26, addressmodChange);
 	}
 
 	@BeforeAll
@@ -52,8 +52,8 @@ public class CustomerServiceImplTest {
 
 	@Test
 	public void testGetCustomer() {
-		when(customerServiceDAO.getCustomer(1)).thenReturn(Optional.of(customermod));
-		Optional<CustomerModel> customerbo = customerServiceImpl.getCustomer(1);
+		when(customerServiceDAO.getCustomer(1l)).thenReturn(Optional.of(customermod));
+		Optional<CustomerModel> customerbo = customerServiceImpl.getCustomer(1l);
 		assertThat(customerbo.get().getFname()).isEqualTo(customermod.getFname());
 	}
 

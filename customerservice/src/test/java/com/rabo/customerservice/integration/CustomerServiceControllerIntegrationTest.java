@@ -33,7 +33,7 @@ public class CustomerServiceControllerIntegrationTest {
 	@Order(1)
 	public void testAddCusotmer() {
 		AddressModel addressmod = new AddressModel("Street1", "HYD", "111111", "India");
-		CustomerModel customermod = new CustomerModel(1, "Gopi", "Akula", 26, addressmod);
+		CustomerModel customermod = new CustomerModel(1l, "Gopi", "Akula", 26, addressmod);
 		HttpEntity<CustomerModel> entity = new HttpEntity<CustomerModel>(customermod, headers);
 		ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("/customer"), HttpMethod.POST, entity,
 				String.class);
@@ -84,7 +84,7 @@ public class CustomerServiceControllerIntegrationTest {
 	@Test
 	@Order(6)
 	public void testUpdateLivingAddress() {
-		AddressModel addressmod = new AddressModel(1,"Street2", "BNGLR", "222222", "India");		
+		AddressModel addressmod = new AddressModel(1l,"Street2", "BNGLR", "222222", "India");		
 		HttpEntity<AddressModel> entity = new HttpEntity<AddressModel>(addressmod, headers);
 		ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("/updateAddress/1"), HttpMethod.PUT, entity,
 				String.class);
@@ -96,18 +96,7 @@ public class CustomerServiceControllerIntegrationTest {
 	@Order(7)
 	public void testAddCusotmer_fNameExc() {
 		AddressModel addressmod = new AddressModel("Street1", "HYD", "11111", "India");
-		CustomerModel customermod = new CustomerModel(2, "Gopi", "", 26, addressmod);
-		HttpEntity<CustomerModel> entity = new HttpEntity<CustomerModel>(customermod, headers);
-		ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("/customer"), HttpMethod.POST, entity,
-				String.class);
-		assertThat(response.getStatusCodeValue()).isEqualTo(400);
-
-	}
-	
-	@Test
-	@Order(8)
-	public void testAddCusotmer_Exc() {
-		CustomerModel customermod = new CustomerModel();
+		CustomerModel customermod = new CustomerModel(2l, "Gopi", "", 26, addressmod);
 		HttpEntity<CustomerModel> entity = new HttpEntity<CustomerModel>(customermod, headers);
 		ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("/customer"), HttpMethod.POST, entity,
 				String.class);

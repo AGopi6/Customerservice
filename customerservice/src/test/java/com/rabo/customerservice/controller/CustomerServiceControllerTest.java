@@ -31,8 +31,8 @@ public class CustomerServiceControllerTest {
  
 	@Test
 	public void testAddCustomer() {
-		AddressModel address = new AddressModel(1, "Street1", "HYD", "111111", "India");
-		CustomerModel customer = new CustomerModel(1, "Gopi", "Akula", 26, address);
+		AddressModel address = new AddressModel(1l, "Street1", "HYD", "111111", "India");
+		CustomerModel customer = new CustomerModel(1l, "Gopi", "Akula", 26, address);
 		when(customerServiceImpl.addCustomer(customer)).thenReturn(Optional.of(customer));
 		ResponseEntity<String> responseEntity = customerServiceController.addCustomer(customer);
 		assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
@@ -40,10 +40,10 @@ public class CustomerServiceControllerTest {
 
 	@Test
 	public void testGetCustomer() {
-		AddressModel address = new AddressModel(1, "Street1", "HYD", "111111", "India");
-		CustomerModel customer = new CustomerModel(1, "Gopi", "Akula", 26, address);
-		when(customerServiceImpl.getCustomer(1)).thenReturn(Optional.of(customer));
-		ResponseEntity<Optional<CustomerModel>> responseEntity = customerServiceController.getCustomer(1);
+		AddressModel address = new AddressModel(1l, "Street1", "HYD", "111111", "India");
+		CustomerModel customer = new CustomerModel(1l, "Gopi", "Akula", 26, address);
+		when(customerServiceImpl.getCustomer(1l)).thenReturn(Optional.of(customer));
+		ResponseEntity<Optional<CustomerModel>> responseEntity = customerServiceController.getCustomer(1l);
 		CustomerModel customer1 = responseEntity.getBody().get();
 		assertEquals("Gopi", customer1.getFname());
 		assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
@@ -52,9 +52,9 @@ public class CustomerServiceControllerTest {
 	@Test
 	public void testGetAllCustomer() {
 		List<CustomerModel> customerList = new ArrayList<CustomerModel>();
-		AddressModel address = new AddressModel(1, "Street1", "HYD", "111111", "India");
-		CustomerModel customer = new CustomerModel(1, "Gopi", "Akula", 26, address);
-		CustomerModel customer1 = new CustomerModel(2, "Gopi", "Akula", 26, address);
+		AddressModel address = new AddressModel(1l, "Street1", "HYD", "111111", "India");
+		CustomerModel customer = new CustomerModel(1l, "Gopi", "Akula", 26, address);
+		CustomerModel customer1 = new CustomerModel(2l, "Gopi", "Akula", 26, address);
 		customerList.add(customer);
 		customerList.add(customer1);
 		List<Optional<CustomerModel>> resultList = customerList.stream().map(Optional::ofNullable)
@@ -72,8 +72,8 @@ public class CustomerServiceControllerTest {
 		List<CustomerModel> customerList = new ArrayList<CustomerModel>();
 		String fname = "Gopi";
 		String lname = "Akula";
-		AddressModel address = new AddressModel(1, "Street1", "HYD", "111111", "India");
-		CustomerModel customer = new CustomerModel(1, "Gopi", "Akula", 26, address);
+		AddressModel address = new AddressModel(1l, "Street1", "HYD", "111111", "India");
+		CustomerModel customer = new CustomerModel(1l, "Gopi", "Akula", 26, address);
 		customerList.add(customer);
 		List<Optional<CustomerModel>> resultList = customerList.stream().map(Optional::ofNullable)
 				.collect(Collectors.toList());
@@ -90,9 +90,9 @@ public class CustomerServiceControllerTest {
 		List<CustomerModel> customerList = new ArrayList<CustomerModel>();
 		String fname = "Gopi";
 		String lname = "Akulas";
-		AddressModel address = new AddressModel(1, "Street1", "HYD", "111111", "India");
-		CustomerModel customer = new CustomerModel(1, "Gopi", "Raju", 26, address);
-		CustomerModel customer1 = new CustomerModel(2, "Gopi", "Akula", 26, address);
+		AddressModel address = new AddressModel(1l, "Street1", "HYD", "111111", "India");
+		CustomerModel customer = new CustomerModel(1l, "Gopi", "Raju", 26, address);
+		CustomerModel customer1 = new CustomerModel(2l, "Gopi", "Akula", 26, address);
 		customerList.add(customer);
 		customerList.add(customer1);
 		List<Optional<CustomerModel>> resultList = customerList.stream().map(Optional::ofNullable)
@@ -108,8 +108,8 @@ public class CustomerServiceControllerTest {
 	@Test
 	public void testUpdateLivingAddress() {
 		AddressModel address = new AddressModel("Street1", "HYD", "111111", "India");
-		CustomerModel customer = new CustomerModel(1, "Gopi", "Akula", 26, address);		
-		int id = 1;
+		CustomerModel customer = new CustomerModel(1l, "Gopi", "Akula", 26, address);		
+		Long id = 1l;
 		when(customerServiceImpl.updateLivingAddress(id, address)).thenReturn(Optional.of(customer));
 		ResponseEntity<String> responseEntity = customerServiceController.updateLivingAddress(id, address);
 		assertThat(responseEntity.getStatusCodeValue()).isEqualTo(202);
